@@ -57,9 +57,11 @@
     return `Hello, my name is ${this.name} and i am ${this.age} years old.`
   };
   Person.prototype.eba = function(meals){
-    if(this.eatEdibles){
+    if(this.eatEdibles === true){
       let fed = this.stomach.push(meals);
       return fed;
+    }else{
+      return `Cant it that, please.`
     }
   }
   Person.prototype.pooping = function(meals){
@@ -85,8 +87,52 @@
   - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
+*/
+function Car (Model, Make){
+  this.model = Model;
+  this.make = Make;
+  this.driveDistance = true;
+  this.crashAble = true;
+  this.canRepair = true;
+}
 
-  TASK 3
+let odometer = 0;
+Car.prototype.drvienFar = function(){
+  if(this.driveDistance=== true){
+    return odometer = odometer + 5;
+  }else{
+    return `Parked`
+  }
+}
+
+Car.prototype.drivenAfterCrash = function(){
+  if(this.crashAble === true){
+    return `I crashed at ${this.drvienFar() -5} miles!.`
+  }else{
+    return `Fit for the Road!`
+  }
+}
+Car.prototype.nowRepaired = function(){
+  if(this.canRepair === true){
+    return `Repairs done, Good to go`
+  }
+}
+
+Vehicle = new Car ("Toyota", "Corola",)
+console.log("Model: "+ Vehicle.model + ", Make: "+ Vehicle.make)
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drivenAfterCrash());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.nowRepaired());
+
+
+
+
+
+  /*TASK 3
 
   - Build a Baby constructor that subclasses the Person built earlier.
   - Babies of course inherit the ability to greet, which can be strange.

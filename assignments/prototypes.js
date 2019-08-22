@@ -86,7 +86,7 @@
   - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
-*/
+  */
 function Car (Model_Name, Make){
   this.model = Model_Name;
   this.make = Make;
@@ -130,13 +130,26 @@ console.log(Vehicle.drvienFar());
 console.log(Vehicle.drvienFar());
 
 
-  /*TASK 3
+ /*TASK 3
 
   - Build a Baby constructor that subclasses the Person built earlier.
   - Babies of course inherit the ability to greet, which can be strange.
   - Babies should have the ability to play, which persons don't.
   - By playing, a string is returned with some text of your choosing.
+  */
 
+ function Baby (Name, Age, playWith) {
+  Person.call(this, Name, Age);
+  this.favoriteToy = playWith;
+}
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.playWithToy = function () {
+  return `I love playing with my ${this.favoriteToy}!`;
+};
+const baby = new Baby("Cindy", 5, "Barbie")
+console.log(baby.playWithToy());
+
+/*
   TASK 4
 
   Use your imagination and come up with constructors that allow to build objects

@@ -45,7 +45,37 @@
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
+*/
+  function Person (Name, Age) {
+    this.name = Name;
+    this.age = Age;
+    this.eatEdibles = true;
+    this.stomach = [];
+    this.poop = true;
+  }
+  Person.prototype.greet = function (){
+    return `Hello, my name is ${this.name} and i am ${this.age} years old.`
+  };
+  Person.prototype.eba = function(meals){
+    if(this.eatEdibles){
+      let fed = this.stomach.push(meals);
+      return fed;
+    }
+  }
+  Person.prototype.pooping = function(meals){
+    if(this.poop === true) {
+      return this.stomach =[]
+    }
+  }
+  const Humn = new Person("James", 40)
+  console.log("Name: "+ Humn.name);
+  console.log("Age: " + Humn.age);
+  console.log(Humn.greet());
+  console.log(Humn.eba());
+  console.log(Humn.pooping());
 
+
+  /*
   TASK 2
 
   - Build a Car constructor that takes model name and make.

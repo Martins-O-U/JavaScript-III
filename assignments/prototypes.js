@@ -58,10 +58,9 @@
   };
   Person.prototype.eba = function(meals){
     if(this.eatEdibles === true){
-      let fed = this.stomach.push(meals);
-      return fed;
+      return this.stomach.push(meals);
     }else{
-      return `Cant it that, please.`
+      return `Can't eat that, please.`
     }
   }
   Person.prototype.pooping = function(meals){
@@ -88,8 +87,8 @@
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
 */
-function Car (Model, Make){
-  this.model = Model;
+function Car (Model_Name, Make){
+  this.model = Model_Name;
   this.make = Make;
   this.driveDistance = true;
   this.crashAble = true;
@@ -101,25 +100,25 @@ Car.prototype.drvienFar = function(){
   if(this.driveDistance=== true){
     return odometer = odometer + 5;
   }else{
-    return `Parked`
+    return  `I crashed at ${odometer} miles!.`
+
   }
 }
 
 Car.prototype.drivenAfterCrash = function(){
   if(this.crashAble === true){
-    return `I crashed at ${this.drvienFar() -5} miles!.`
-  }else{
-    return `Fit for the Road!`
+    return   this.driveDistance = false;
   }
 }
 Car.prototype.nowRepaired = function(){
   if(this.canRepair === true){
-    return `Repairs done, Good to go`
+    this.driveDistance = true;
+    return "Repairs done,fit for work again!";
   }
 }
 
 Vehicle = new Car ("Toyota", "Corola",)
-console.log("Model: "+ Vehicle.model + ", Make: "+ Vehicle.make)
+console.log("Model_Name: "+ Vehicle.model + ", Make: "+ Vehicle.make)
 console.log(Vehicle.drvienFar());
 console.log(Vehicle.drvienFar());
 console.log(Vehicle.drvienFar());
@@ -127,9 +126,8 @@ console.log(Vehicle.drivenAfterCrash());
 console.log(Vehicle.drvienFar());
 console.log(Vehicle.drvienFar());
 console.log(Vehicle.nowRepaired());
-
-
-
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
 
 
   /*TASK 3

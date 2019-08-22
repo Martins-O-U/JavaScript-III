@@ -155,8 +155,52 @@ console.log(baby.playWithToy());
   Use your imagination and come up with constructors that allow to build objects
   With amazing and original capabilities. Build 3 small ones, or a very
   complicated one with lots of state. Surprise us!
-
 */
+
+//Task 4 (A)
+function Estate (House_Type, House_Colour, Block){
+this.type = House_Type;
+this.color = House_Colour;
+this.block = Block;
+this.isOccupied = false;
+}
+
+Estate.prototype.available = function(){
+  if(this.isOccupied === false){
+    return `${this.type} of block ${this.block} "To Let"`
+  }else{
+    return "House not available"
+  }
+}
+
+const Home = new Estate("Duplex", "skyBlue", 25);
+const House = new Estate("Bongalo", "Briliant White", 30);
+const Place = new Estate("Mini-Flat", "Lemon", 15);
+
+console.log("House_type: "+ Home.type);
+console.log("House_colour: "+ Home.color);
+console.log(Place.available());
+
+
+//Task 4 (B)
+
+function LivingThings(Name, Breath,Reproduce,Excrete){
+  this.name = Name;
+  this.breath = Breath;
+  this.repro = Reproduce;
+  this.excrete = Excrete;
+}
+
+function Dog (Name,Breath, Reproduce, Excrete,) {
+  LivingThings.call(this,Name,Breath, Reproduce, Excrete);
+  this.bark = function(){
+    return "Wooooaaaf Wooaff!!"
+  };
+};
+
+Dog.prototype = Object.create(LivingThings.prototype);
+const dog = new Dog("Jark")
+console.log(`${dog.name} barks ${dog.bark()}`)
 
 /*
 

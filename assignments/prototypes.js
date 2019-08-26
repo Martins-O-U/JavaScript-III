@@ -45,7 +45,38 @@
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
+*/
+  function Person (Name, Age) {
+    this.name = Name;
+    this.age = Age;
+    this.eatEdibles = true;
+    this.stomach = [];
+    this.poop = true;
+  }
+  Person.prototype.greet = function (){
+    return `Hello, my name is ${this.name} and i am ${this.age} years old.`
+  };
+  Person.prototype.eba = function(meals){
+    if(this.eatEdibles === true){
+      return this.stomach.push(meals);
+    }else{
+      return `Can't eat that, please.`
+    }
+  }
+  Person.prototype.pooping = function(meals){
+    if(this.poop === true) {
+      return this.stomach =[]
+    }
+  }
+  const Humn = new Person("James", 40)
+  console.log("Name: "+ Humn.name);
+  console.log("Age: " + Humn.age);
+  console.log(Humn.greet());
+  console.log(Humn.eba());
+  console.log(Humn.pooping());
 
+
+  /*
   TASK 2
 
   - Build a Car constructor that takes model name and make.
@@ -55,21 +86,121 @@
   - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
+  */
+function Car (Model_Name, Make){
+  this.model = Model_Name;
+  this.make = Make;
+  this.driveDistance = true;
+  this.crashAble = true;
+  this.canRepair = true;
+}
 
-  TASK 3
+let odometer = 0;
+Car.prototype.drvienFar = function(){
+  if(this.driveDistance=== true){
+    return odometer = odometer + 5;
+  }else{
+    return  `I crashed at ${odometer} miles!.`
+
+  }
+}
+
+Car.prototype.drivenAfterCrash = function(){
+  if(this.crashAble === true){
+    return   this.driveDistance = false;
+  }
+}
+Car.prototype.nowRepaired = function(){
+  if(this.canRepair === true){
+    this.driveDistance = true;
+    return "Repairs done,fit for work again!";
+  }
+}
+
+Vehicle = new Car ("Toyota", "Corola",)
+console.log("Model_Name: "+ Vehicle.model + ", Make: "+ Vehicle.make)
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drivenAfterCrash());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.nowRepaired());
+console.log(Vehicle.drvienFar());
+console.log(Vehicle.drvienFar());
+
+
+ /*TASK 3
 
   - Build a Baby constructor that subclasses the Person built earlier.
   - Babies of course inherit the ability to greet, which can be strange.
   - Babies should have the ability to play, which persons don't.
   - By playing, a string is returned with some text of your choosing.
+  */
 
+ function Baby (Name, Age, playWith) {
+  Person.call(this, Name, Age);
+  this.favoriteToy = playWith;
+}
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.playWithToy = function () {
+  return `I love playing with my ${this.favoriteToy}!`;
+};
+const baby = new Baby("Cindy", 5, "Barbie")
+console.log(baby.playWithToy());
+
+/*
   TASK 4
 
   Use your imagination and come up with constructors that allow to build objects
   With amazing and original capabilities. Build 3 small ones, or a very
   complicated one with lots of state. Surprise us!
-
 */
+
+//Task 4 (A)
+function Estate (House_Type, House_Colour, Block){
+this.type = House_Type;
+this.color = House_Colour;
+this.block = Block;
+this.isOccupied = false;
+}
+
+Estate.prototype.available = function(){
+  if(this.isOccupied === false){
+    return `${this.type} of block ${this.block} "To Let"`
+  }else{
+    return "House not available"
+  }
+}
+
+const Home = new Estate("Duplex", "skyBlue", 25);
+const House = new Estate("Bongalo", "Briliant White", 30);
+const Place = new Estate("Mini-Flat", "Lemon", 15);
+
+console.log("House_type: "+ Home.type);
+console.log("House_colour: "+ Home.color);
+console.log(Place.available());
+
+
+//Task 4 (B)
+
+function LivingThings(Name, Breath,Reproduce,Excrete){
+  this.name = Name;
+  this.breath = Breath;
+  this.repro = Reproduce;
+  this.excrete = Excrete;
+}
+
+function Dog (Name,Breath, Reproduce, Excrete,) {
+  LivingThings.call(this,Name,Breath, Reproduce, Excrete);
+  this.bark = function(){
+    return "Wooooaaaf Wooaff!!"
+  };
+};
+
+Dog.prototype = Object.create(LivingThings.prototype);
+const dog = new Dog("Jark")
+console.log(`${dog.name} barks ${dog.bark()}`)
 
 /*
 
